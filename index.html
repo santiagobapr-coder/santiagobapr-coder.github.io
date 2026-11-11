@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Santiago Barreto | Análisis de datos, automatización y desarrollo a medida</title>
+<meta name="description" content="Freelance en Bogotá: tableros en Power BI, reportes automáticos, páginas web, aplicaciones y automatizaciones a medida para pymes. Cotización gratis.">
+<meta property="og:title" content="Santiago Barreto | Datos, automatización y desarrollo a medida">
+<meta property="og:description" content="Tableros, reportes automáticos, páginas web, apps y automatizaciones para pymes. Cotización gratis.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Concepto: hoja de trabajo limpia. Cuadrícula tenue de fondo, tipografía técnica y un solo acento verde-azulado. */
+:root{
+  --bg:#f2f5f7; --surface:#ffffff; --fg:#13222d; --muted:#556573; --line:#d6dee4; --accent:#0b7a6b; --accent-fg:#ffffff; --soft:#e2f1ee;
+  --head:'Space Grotesk','Helvetica Neue',Arial,sans-serif; --body:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0e171d;--surface:#15222b;--fg:#e8eef2;--muted:#9fb0bc;--line:#26363f;--accent:#3cc4ae;--accent-fg:#06211c;--soft:#12332f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e171d;--surface:#15222b;--fg:#e8eef2;--muted:#9fb0bc;--line:#26363f;--accent:#3cc4ae;--accent-fg:#06211c;--soft:#12332f;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 var(--body);padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:44px 44px;background-position:-1px -1px;background-attachment:scroll}
+.wrap{max-width:1040px;margin:0 auto}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 0;flex-wrap:wrap}
+.brand{font:700 18px var(--head);letter-spacing:-.01em}
+.brand span{color:var(--accent)}
+nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+nav a{color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--fg)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;padding:48px 0 56px}
+.eyebrow{font:500 13px var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+h1{font:700 clamp(32px,5.4vw,56px)/1.05 var(--head);letter-spacing:-.025em;margin:12px 0 18px;text-wrap:balance}
+.lead{font-size:18px;color:var(--muted);max-width:56ch;margin:0 0 26px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:8px;font:600 15px var(--body);text-decoration:none;border:1.5px solid var(--accent);cursor:pointer}
+.btn.primary{background:var(--accent);color:var(--accent-fg)}
+.btn.ghost{background:transparent;color:var(--fg);border-color:var(--line);background:var(--surface)}
+.btn:hover{filter:brightness(1.06)}
+.proof{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;min-width:0}
+.proof h3{font:500 13px var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+.bar{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:center;margin:10px 0;font-size:13px;color:var(--muted)}
+.track{background:var(--bg);border-radius:6px;height:26px;overflow:hidden;border:1px solid var(--line)}
+.fill{height:100%;display:flex;align-items:center;padding-left:10px;font:600 12px var(--body);color:var(--accent-fg);background:var(--accent)}
+.fill.old{background:var(--muted);color:var(--surface)}
+.proof p{font-size:13px;color:var(--muted);margin:14px 0 0}
+section{padding:44px 0}
+h2{font:700 clamp(26px,3.6vw,36px)/1.1 var(--head);letter-spacing:-.02em;margin:0 0 8px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 28px;max-width:62ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;min-width:0}
+.card h3{font:700 19px var(--head);margin:0 0 8px;letter-spacing:-.01em}
+.card p{margin:0 0 12px;color:var(--muted);font-size:15px}
+.tag{display:inline-block;font:500 12px var(--body);background:var(--soft);color:var(--accent);padding:3px 9px;border-radius:99px;margin:0 6px 6px 0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;counter-reset:s}
+.step{border-top:3px solid var(--accent);padding-top:14px;counter-increment:s}
+.step::before{content:"Paso " counter(s);font:500 12px var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.step h3{font:700 18px var(--head);margin:6px 0}
+.step p{margin:0;color:var(--muted);font-size:15px}
+.work a.card{text-decoration:none;color:inherit;display:block}
+.work a.card:hover{border-color:var(--accent)}
+.work .go{font:600 14px var(--body);color:var(--accent)}
+.about{display:grid;grid-template-columns:1.3fr .7fr;gap:28px}
+.about p{margin:0 0 14px}
+.facts{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;min-width:0}
+.facts dl{margin:0}
+.facts dt{font:500 12px var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.facts dt:first-child{margin-top:0}
+.facts dd{margin:2px 0 0;font-size:15px}
+.contact{background:var(--fg);color:var(--bg);border-radius:16px;padding:34px;margin:20px 0 40px}
+.contact h2{color:var(--bg)}
+.contact p{color:var(--bg);opacity:.85;margin:0 0 20px}
+.contact .cta .btn.ghost{background:transparent;color:var(--bg);border-color:var(--bg)}
+.contact .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.mail{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px;font-size:15px}
+.mail code{background:rgba(127,127,127,.2);padding:6px 10px;border-radius:6px;font:500 14px var(--body);user-select:all;overflow-wrap:anywhere}
+.mail button{font:600 13px var(--body);padding:6px 12px;border-radius:6px;border:1px solid var(--bg);background:transparent;color:var(--bg);cursor:pointer}
+footer{padding:0 0 32px;color:var(--muted);font-size:13px}
+@media (max-width:760px){.hero,.about{grid-template-columns:1fr}.hero{padding-top:28px}.contact{padding:24px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand">Santiago Barreto<span>.</span>datos</div>
+  <nav><a href="#servicios">Servicios</a><a href="#proceso">Cómo trabajo</a><a href="#trabajos">Trabajos</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav>
+</header>
+
+<main>
+<div class="hero">
+  <div>
+    <div class="eyebrow">Datos, automatización y desarrollo a medida para pymes</div>
+    <h1>Tu negocio, más claro y con menos trabajo manual.</h1>
+    <p class="lead">Tableros, reportes automáticos, páginas web, aplicaciones y automatizaciones hechas a tu medida, para que dejes de copiar y pegar y te enfoques en vender.</p>
+    <div class="cta">
+      <a class="btn primary" href="#contacto">Pedir una cotización gratis</a>
+      <a class="btn ghost" href="#trabajos">Ver trabajos de ejemplo</a>
+    </div>
+  </div>
+  <aside class="proof" aria-label="Ejemplo de ahorro de tiempo">
+    <h3>Un reporte manual, antes y después</h3>
+    <div class="bar"><span>Manual</span><div class="track"><div class="fill old" style="width:100%">1 hora</div></div></div>
+    <div class="bar"><span>Automático</span><div class="track"><div class="fill" style="width:25%">15 min</div></div></div>
+    <p>Resultado real de automatizar un reporte recurrente con Power Query, Power Automate y Power Apps.</p>
+  </aside>
+</div>
+
+<section id="servicios">
+  <h2>Lo que puedo hacer por tu negocio</h2>
+  <p class="sub">Servicios concretos, con entregables claros y precio acordado antes de empezar. Si tu necesidad no está en la lista, cuéntamela.</p>
+  <div class="grid">
+    <div class="card"><h3>Tableros y reportes</h3><p>Ventas, inventario, clientes y finanzas en un solo vistazo, con alertas de lo que importa.</p><span class="tag">Power BI</span><span class="tag">Looker Studio</span><span class="tag">Excel</span></div>
+    <div class="card"><h3>Reportes automáticos</h3><p>Resúmenes que llegan solos a tu correo o WhatsApp, sin armar nada a mano.</p><span class="tag">Python</span><span class="tag">Power Automate</span></div>
+    <div class="card"><h3>Automatización de procesos</h3><p>Elimino tareas repetitivas: facturas, pedidos, inventarios, conciliaciones y más.</p><span class="tag">Python</span><span class="tag">Power Automate</span><span class="tag">Macros</span></div>
+    <div class="card"><h3>Páginas web y tiendas</h3><p>Sitios y landing pages claros y rápidos para que tus clientes te encuentren.</p><span class="tag">Diseño web</span><span class="tag">Landing pages</span><span class="tag">SEO básico</span></div>
+    <div class="card"><h3>Aplicaciones a medida</h3><p>Herramientas internas, formularios, calculadoras y paneles hechos para tu operación.</p><span class="tag">Web apps</span><span class="tag">Python</span><span class="tag">Bases de datos</span></div>
+    <div class="card"><h3>Bots y chatbots</h3><p>Asistentes que responden preguntas frecuentes y agilizan la atención al cliente.</p><span class="tag">Chatbots</span><span class="tag">WhatsApp</span><span class="tag">Telegram</span></div>
+    <div class="card"><h3>Integraciones y APIs</h3><p>Conecto tus herramientas (CRM, hojas de cálculo, pasarelas de pago) para que compartan datos.</p><span class="tag">APIs</span><span class="tag">Webhooks</span><span class="tag">CRM</span></div>
+    <div class="card"><h3>Extracción de datos (scraping)</h3><p>Recopilo precios, catálogos o listados de la web y los organizo listos para analizar.</p><span class="tag">Web scraping</span><span class="tag">Python</span></div>
+    <div class="card"><h3>Bases de datos y consolidación</h3><p>Unifico archivos desordenados en una base confiable y consultable.</p><span class="tag">SQL</span><span class="tag">Power Query</span><span class="tag">ETL</span></div>
+    <div class="card"><h3>Análisis y segmentación</h3><p>Quiénes compran más, quién está en riesgo, qué se vende y por qué.</p><span class="tag">Python</span><span class="tag">Estadística</span><span class="tag">RFM</span></div>
+    <div class="card"><h3>Inteligencia artificial aplicada</h3><p>Clasificación de textos, resúmenes de documentos y asistentes con IA para tu negocio.</p><span class="tag">IA</span><span class="tag">Automatización</span></div>
+    <div class="card"><h3>Capacitación en Excel y datos</h3><p>Te enseño a usar tus propios reportes y herramientas para que seas autónomo.</p><span class="tag">Excel</span><span class="tag">Power BI</span></div>
+  </div>
+</section>
+
+<section id="proceso">
+  <h2>Cómo trabajo</h2>
+  <p class="sub">Sencillo y sin sorpresas.</p>
+  <div class="steps">
+    <div class="step"><h3>Me cuentas el problema</h3><p>Qué decisión necesitas tomar y de dónde salen tus datos.</p></div>
+    <div class="step"><h3>Cotización cerrada</h3><p>Te propongo alcance, plazo y precio antes de empezar.</p></div>
+    <div class="step"><h3>Primera versión rápida</h3><p>Ves un avance pronto y me dices qué ajustar.</p></div>
+    <div class="step"><h3>Entrega y explicación</h3><p>Te explico los resultados en lenguaje simple y te dejo todo documentado.</p></div>
+  </div>
+</section>
+
+<section id="trabajos" class="work">
+  <h2>Trabajos de ejemplo</h2>
+  <p class="sub">Proyectos con datos de muestra, con el código abierto en GitHub.</p>
+  <div class="grid">
+    <a class="card" href="https://github.com/santiagobapr-coder/tablero-ventas-tienda-online"><h3>Tablero de ventas para tienda online</h3><p>KPIs frente al año anterior, mezcla de canales y alertas de productos en caída.</p><span class="go">Ver en GitHub →</span></a>
+    <a class="card" href="https://github.com/santiagobapr-coder/reporte-automatico-correo"><h3>Reporte semanal automático</h3><p>Compara la última semana con la anterior y envía el resumen por correo.</p><span class="go">Ver en GitHub →</span></a>
+    <a class="card" href="https://github.com/santiagobapr-coder/inventario-alertas-stock"><h3>Inventario con alertas de stock</h3><p>Riesgo de agotado y pedido sugerido a partir del consumo diario.</p><span class="go">Ver en GitHub →</span></a>
+    <a class="card" href="https://github.com/santiagobapr-coder/panel-finanzas-pyme"><h3>Panel de finanzas para pymes</h3><p>Ingresos, gastos y flujo de caja desde archivos Excel o CSV.</p><span class="go">Ver en GitHub →</span></a>
+    <a class="card" href="https://github.com/santiagobapr-coder/segmentacion-clientes-rfm"><h3>Segmentación de clientes RFM</h3><p>Agrupa clientes por recencia, frecuencia y gasto para orientar la retención.</p><span class="go">Ver en GitHub →</span></a>
+    <a class="card" href="https://github.com/santiagobapr-coder/asistente-reportes"><h3>Asistente de reportes</h3><p>Sube un Excel o CSV y recibe un reporte en lenguaje claro con tendencias y calidad de datos.</p><span class="go">Ver en GitHub →</span></a>
+  </div>
+</section>
+
+<section id="sobre-mi">
+  <h2>Sobre mí</h2>
+  <div class="about">
+    <div>
+      <p>Soy Ingeniero Químico y analista de datos en Bogotá. Convierto información desordenada en herramientas claras, automatizo el trabajo repetitivo y construyo páginas, aplicaciones y bots a la medida de cada negocio.</p>
+      <p>Cuido la calidad de los datos, explico los resultados sin tecnicismos y entrego lo que acordamos, en el plazo acordado. Atiendo en español e inglés.</p>
+    </div>
+    <div class="facts"><dl>
+      <dt>Herramientas</dt><dd>Power BI, Python, SQL, Excel, Power Automate, desarrollo web y APIs</dd>
+      <dt>Formación</dt><dd>Ingeniería Química. Maestría en Analítica Aplicada en curso, Universidad de La Sabana</dd>
+      <dt>Idiomas</dt><dd>Español e inglés</dd>
+      <dt>Perfiles</dt><dd><a href="https://www.workana.com/freelancer/f695fe1441861f2797eb76df56f9ce06" style="color:var(--accent)">Workana</a> · <a href="https://www.linkedin.com/in/santiago-barreto-a71b3726a/" style="color:var(--accent)">LinkedIn</a> · <a href="https://github.com/santiagobapr-coder" style="color:var(--accent)">GitHub</a></dd>
+    </dl></div>
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <h2>Cuéntame qué necesitas</h2>
+  <p>Escríbeme y te respondo con una propuesta y un precio. La primera consulta es gratis.</p>
+  <div class="cta">
+    <a class="btn primary" href="https://wa.me/573115477119">Escribir por WhatsApp</a>
+    <a class="btn ghost" href="https://www.workana.com/freelancer/f695fe1441861f2797eb76df56f9ce06">Contratar en Workana</a>
+  </div>
+  <div class="mail"><span>Correo:</span><code id="mail">Santiagobapr@gmail.com</code><button id="copy" type="button">Copiar</button></div>
+  <div class="mail"><span>WhatsApp:</span><code>+57 311 547 7119</code></div>
+</section>
+</main>
+<footer>Santiago Barreto Prieto · Bogotá, Colombia</footer>
+</div>
+
+<script>
+document.getElementById('copy').addEventListener('click',function(){
+  var b=this, t=document.getElementById('mail').textContent;
+  function ok(){b.textContent='Copiado';setTimeout(function(){b.textContent='Copiar'},1800)}
+  try{navigator.clipboard.writeText(t).then(ok,function(){sel()})}catch(e){sel()}
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById('mail'));var s=window.getSelection();s.removeAllRanges();s.addRange(r)}
+});
+</script>
+</body>
+</html>
